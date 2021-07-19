@@ -1,4 +1,4 @@
-import { useReducer, useEffect } from 'react';
+import { useReducer} from 'react';
 import axios from 'axios';
 import CartContext from './cart-context';
 
@@ -63,15 +63,6 @@ const CartProvider = (props) => {
     cartReducer,
     defaultCartState
   );
-
-  useEffect(() => {
-    getData()
-  }, [])
-
-  async function getData() {
-    const data = await axios.get('https://react-http-course-1bc49-default-rtdb.firebaseio.com/meals.json')
-    console.log(data)
-  }
 
   const addItemToCartHandler = (item) => {
     dispatchCartAction({ type: 'ADD', item: item });

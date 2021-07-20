@@ -3,6 +3,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
+node_modules
 /node_modules
 /.pnp
 .pnp.js
@@ -23,3 +24,7 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+code/01-starting-project/.eslintcache
+code/01-starting-project/node_modules/.bin/acorn
+*.cmd
+code/01-starting-project/node_modules/.bin/ansi-html

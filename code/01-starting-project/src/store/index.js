@@ -1,58 +1,16 @@
-import { createStore } from 'redux'
-import { createSlice } from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit'
+import authSlice from './auth-slice';
+import counterSlice from './counter-slice';
 
-const initialState = {counter: 0, showCounter: true}
-
-// * VERY CONVENIENT!!! 
-// TODO: MEMORIZE THIS PATTERN ASAP (DOESN'T SEEM THAT HARD THOUGH)
-createSlice({
-    name: 'counter',
-    initialState,
-    reducers: {
-        increment(state) {
-            state.counter++;
-        },
-        decrement(state) {
-            state.counter--
-        },
-        increase(state, action) {
-            state.counter = state.counter + action.amount
-        },
-        toggleCounter(state) {
-            state.showCounter = !state.showCounter
-        },
+const store = configureStore({
+    reducer: {
+        counter: counterSlice.reducer,
+        auth: authSlice.reducer,
     }
 })
 
-const counterReducer = ( state = initialState, action ) => {
-    if(action.type === 'increment') {
-        return {
-            ...state,
-            counter: state.counter + 1,
-        }
-    }
-    if(action.type === 'increaseByAmount') {
-        return {
-            ...state,
-            counter: state.counter + action.amount
-        }
-    }
-    if(action.type === 'decrement') {
-        return {
-            ...state,
-            counter: state.counter - 1
-        }
-    }
-    if(action.type === 'toggle') {
-        return {
-            ...state,
-            showCounter: !state.showCounter
-        }
-    }
-
-    return state
-}
-
-const store = createStore(counterReducer)
+// *optionally can be exported on each individual file instead of all in this index file
+// export const authActions = authSlice.actions;
+// export const counterActions = counterSlice.actions;
 
 export default store

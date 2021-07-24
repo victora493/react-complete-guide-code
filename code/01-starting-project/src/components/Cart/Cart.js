@@ -4,22 +4,18 @@ import CartItem from './CartItem';
 import { useSelector } from 'react-redux';
 
 const Cart = (props) => {
-  const cart = useSelector(state => state.cart)
+  const cartItems = useSelector(state => state.cart.items)
 
   function renderItems() {
-    if(cart.items.length === 0) return (
+    if(!cartItems || cartItems?.length === 0) return (
       <li><p>There are no items in your cart</p></li>
     )
 
-    return cart.items.map(item => (
+    return cartItems?.map(item => (
       <CartItem key={item.id}
         item={item}
       />
     ))
-  }
-
-  if(!cart.isVisible) {
-    return ''
   }
 
   return (
